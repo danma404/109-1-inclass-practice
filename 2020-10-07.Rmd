@@ -1,0 +1,73 @@
+---
+title: "課堂練習模版"
+author: "danma"
+date: "2020-10-07"
+output: output_format
+params:
+  id: "410973013"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+a <- 15 # 變數設定
+b <- a # 呼叫a的值，用來設定變數b的值，相當於 b <- 15
+myName <- "Mary"
+length(myName)
+num1 <- 5
+vNum1 <- c(2,5)
+vNum2 <- c(2, vNum1)
+
+```
+```{r}
+heightsOftheEntireClassroom <- c()
+```
+
+```{r}
+
+
+heightOfAStudentComingInsideTheClassroom <- sample(165:200,1)
+
+```
+
+```{r}
+heightsOftheEntireClassroom <-
+  c(
+    heightsOftheEntireClassroom,
+    heightOfAStudentComingInsideTheClassroom
+  )
+```
+```{r}
+num <- c(1.5, 2, 3)
+int <- c(1L, 3L, -2L)
+char <- c("1.5","2","3")
+logi <- c(T,T,F)
+
+typeof(num)
+typeof(int)
+typeof(char)
+typeof(logi)
+```
+```{r}
+num1<-5 # 非整數
+num2<-5L # 整數
+
+num1Vector<-c(5,6,7)
+num2Vector<-c(5L,6L,7L)
+object.size(num1)
+object.size(num2)
+object.size(num1Vector)
+object.size(num2Vector)
+```
+```{r}
+char1Vector<-c("你好","How are you?")
+```
+
+```{r}
+cat("老師說換行要寫\"\\n\"")
+```
+
