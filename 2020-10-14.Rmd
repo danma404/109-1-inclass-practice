@@ -1,0 +1,101 @@
+---
+title: "課堂練習模版"
+author: "danma"
+date: "2020-10-14"
+output: output_format
+params:
+  id: "410973013"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+my_108_total_credits <- 15
+a108_total_credits <- 15
+a108_total_credits <- 15
+a_my_108_total_credits <- 15
+my.108.total_credits <- 15
+.a108.total_credits <- 15 # 隱藏變數
+.my.108.total_credits <- 15
+我的108學年總學分數 <- 15
+`我的108學年總學分數` <- 15 # 特殊名稱處理，`不是名稱的一部份
+`.108.total_credits` <- 15
+```
+
+```{r}
+num1 <- 5
+vNum1 <- c(2,vNum2)
+vNum2 <- c(2, vNum1)
+```
+
+```{r}
+myName <- "Mary"
+length(myName)
+```
+```{r}
+num2Vector<-c(5L,6L,7L)
+object.size(num2Vector)
+```
+```{r}
+cat("老師說換行要寫\"\\n\"")
+```
+```{r}
+"\u0928\u092e\u0938\u094d\u0924\u0947 \u0926\u0941\u0928\u093f\u092f\u093e"
+```
+```{r}
+num <- c(1.5, 2, 3)
+int <- c(1L, 3L, -2L)
+char <- c("1.5","2","3")
+logi <- c(T,T,F)
+
+typeof(num)
+typeof(int)
+typeof(char)
+typeof(logi)
+class(num)
+class(int)
+class(char)
+class(logi)
+```
+
+```{r}
+# 10位學生的主系
+majors10_char <- c('經濟學系','社會學系','社會學系','經濟學系','經濟學系','社會學系','經濟學系','經濟學系','經濟學系','社會學系')
+
+typeof(majors10_char)
+class(majors10_char)
+```
+```{r}
+majors10_factor <- factor(majors10_char)
+# 或
+
+typeof(majors10_factor)
+class(majors10_factor)
+typeof(majors10_char)
+class(majors10_char)
+```
+```{r}
+a=c()
+```
+
+```{r}
+
+b=sample(100:165,1)
+a=c(a,b)
+```
+```{r}
+g="1"
+as.numeric(g)->g
+g+4
+levels(majors10_factor)
+```
+```{r}
+studentID<-c(14238542,423157489)
+class(studentID)
+typeof(studentID)
+```
+
