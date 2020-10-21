@@ -110,15 +110,15 @@ with_tz(NYTime,tz="Asia/Taipei")->TaipeiTime
 with_tz(NYTime,tz="Europe/Paris")->ParisTime
 d=list(Jason=list(
   Date=date(TaipeiTime),
-  StartTime=paste0(hour(TaipeiTime),":",minute(TaipeiTime),":",second(TaipeiTime)),
+  StartTime=format(TaipeiTime,format="%H:%M:%S"),
   TimeZone=tz(TaipeiTime) ),
   Louis=list(
   Date=date(ParisTime),
-  StartTime=paste0(hour(ParisTime),":",minute(ParisTime),":",second(ParisTime)),
+  StartTime=format(ParisTime,"%H:%M:%S"),
   TimeZone=tz(ParisTime) ),
   Allen=list(
   Date=date(NYTime),
-  StartTime=paste0(hour(NYTime),":",minute(NYTime),":",second(NYTime)),
+  StartTime=format(NYTime,"%H:%M:%S"),
   TimeZone=tz(NYTime) )
   )
 Game5Time=c(Jason=c(Date=paste(d$Jason$Date),StartTime=paste(d$Jason$StartTime),TimeZone=paste(d$Jason$TimeZone)),
@@ -158,7 +158,7 @@ G5TimeParsed
 請問Allen發送訊息，當下遠在台北的Jason，手機跳出通知，時間戳記（Timestamp）是顯示何年何月何日，幾點幾分？請將該內容存在一個物件，是為`TpeJason`。
 
 ```{r ans14}
-TpeJason=format(TaipeiTime)
+TpeJason=G5TimeParsed[[1]]
 TpeJason
 ```
 
