@@ -1,0 +1,55 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "danma"
+date: "2020-11-18"
+output: output_format
+params:
+  id: "410973013"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+example <- list(
+  name=c("小明","小花","小新","美美"),
+  height=c(175,166,170,160),
+  weight=c(77,NA,60,43),
+  birthday=lubridate::ymd(c("1998-03-11","1999-12-22","1995-08-22","2001-10-10")),
+  hobby=c("美食 旅遊","旅遊 時尚","3C 美食","音樂 旅遊"),
+  residence=c("Taipei","New Taipei","Taichung","Kaohsiung"),
+  allowance=factor(c("0-1000","1001-2000","2000+","1001-2000")),
+  bloodType=c("A","B","B","O")
+)
+```
+
+```{r}
+df_example <- as.data.frame(example)
+
+```
+```{r}
+#library(purrr) or purrr::
+#purrr:把List裡同項的元素放一起
+tr_example <- purrr::transpose(example)
+str(tr_example)
+```
+```{r}
+# 使用list的工具
+df_example$name[c(1,4)]
+
+# 使用data frame的延伸工具`[.row(位置), .column(名稱)]`
+df_example[c(1,4), 1:8]#先找要取得元素位置，再找要拿的元素名稱，若要取兩個以上元素，則名稱用c()包起
+rep("a",7)#rep(重複)(重複物,次數)
+```
+
+```{r}
+tr_example<-purrr::transpose(tr_example)
+purrr::map(tr_example,unlist)->tr_example
+as.data.frame(tr_example)->da_example
+da_example
+
+```
+
