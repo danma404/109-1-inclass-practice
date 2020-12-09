@@ -1,0 +1,300 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "danma"
+date: "2020-12-09"
+output: output_format
+params:
+  id: "410973013"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+set.seed(2020)
+d1 <- sample(c(rep("4",10),rep("3",3),rep("7",3)), 25, replace=T)
+d2 <- sample(98:109, 25, replace=T)
+d3 <- sample(c("73", "74", "78", "83", "72"))
+d4 <- sample(1:120, 25, replace=T)
+d4 <- str_pad(d4, 3, side = "left", pad="0")
+schoolIds <- paste0(d1,d2,d3,d4)
+schoolIds
+```
+```{r}
+# {x} 前方卷帶連裝x條
+str_subset(schoolIds,
+           pattern='[0123456789]{9}')
+str_subset(schoolIds,
+           pattern='[0-9]{9}')
+str_subset(schoolIds,
+           pattern='[:digit:]{9}')
+```
+```{r}
+myLove2R <- c("我實在是太愛太愛太愛愛R課程了",
+  "我才是太愛太愛太太愛太太太愛R了",
+  "我則是太愛愛太愛太愛愛愛R了",
+  "找我太太聊天，我太太愛理不理的，我只好回去練我最愛的R。")
+```
+
+```{r}
+str_view_all(myLove2R, "(太愛){2}")
+```
+```{r}
+# {1,2} 前面卷帶裝1～2條 
+str_view_all(myLove2R, "太[愛]{1,2}")
+str_view_all(myLove2R, "太愛{1,2}") # 卷帶只有一個字，可不寫[]
+
+# ? 前面卷帶不確定要不要裝（要裝也只會裝1條）
+str_view_all(myLove2R, "太愛[愛]?")
+```
+```{r}
+str_view_all(myLove2R, "太[愛]{1,}")
+```
+```{r}
+str_view_all(myLove2R, "太[愛]*")
+```
+```{r}
+str_view_all(myLove2R, "太愛[愛]?")
+```
+```{r}
+str_view_all(myLove2R, "太+愛+")
+```
+
+```{r}
+str_view_all(myLove2R, "太+愛+(?!理不理)")
+```
+```{r}
+addresses <- c(
+  '臺中市后里區公館里尾社路385號',
+  '新竹市東區科學園路125號1樓',
+  '新竹市北區竹光路99號',
+  '金門縣金城鎮賢庵里山前33號',
+  '臺中市南屯區工業區二十四路23號1樓')
+```
+
+```{r}
+str_extract(
+  addresses,
+  "(?<=[縣市])[\u4E00-\u9FFF]+[區鎮]"
+)
+```
+```{r}
+str_extract(
+  addresses,
+  "[\u4E00-\u9FFF]+[縣市]"
+)
+```
+```{r}
+str_extract(
+  addresses,
+  "(?<=[縣市])[^區]+[區鎮]"
+)
+```
+```{r}
+Rmdfiles <- c("file1.Rmd", "file2.R", "file3.rmd", "file4.RMD", "myRmd.R")
+```
+
+```{r}
+str_subset(
+  Rmdfiles, "[Rr][Mm][Dd]"
+)
+
+# 要求在句尾
+str_subset(
+  Rmdfiles, "[Rr][Mm][Dd]$"
+)
+```
+```{r}
+download.file("https://www.dropbox.com/s/o9kt3lxtx9pmjqj/homework2.Rmd?dl=1", destfile = "./hw2.Rmd", mode="wb")
+xfun::read_utf8("./hw2.Rmd") -> hw2lines
+View(hw2lines)
+```
+
+```{r}
+pick_starting3Hash <- str_detect(
+  hw2lines,
+  "^###"
+)
+sum(pick_starting3Hash)
+```
+
+```{r}
+pick_starting3Hash <- str_detect(
+  hw2lines,
+  "^### (?=[0-9])"
+)
+sum(pick_starting3Hash)
+```
+```{r}
+sukiyaMenu <- jsonlite::fromJSON("https://www.dropbox.com/s/iu9b1hnvbtss83q/sukiyaMenu.json?dl=1")
+
+nonsetMenu3 <- sukiyaMenu[c("豪華雙饗丼", "牛丼類", "咖哩類" )]
+```
+
+```{r}
+items <- list()
+items$dish_name = vector("list", length=3)
+```
+
+```{r}
+charVect <- vector("character", 5)
+charVect
+charVect <- vector()
+```
+
+```{r}
+# 餐點名稱
+dish_name = nonsetMenu3[[1]]$name
+items$dish_name[[1]] <- unlist(dish_name)
+
+dish_name = nonsetMenu3[[2]]$name
+items$dish_name[[2]] <- unlist(dish_name)
+
+dish_name = nonsetMenu3[[3]]$name
+items$dish_name[[3]] <- unlist(dish_name)
+```
+
+```{r}
+# 餐點名稱
+{
+  dish_name <- nonsetMenu3[[1]]$name
+  items$dish_name[[1]] <- unlist(dish_name)
+}
+{
+  dish_name <- nonsetMenu3[[2]]$name
+  items$dish_name[[2]] <- unlist(dish_name)
+}
+{
+  dish_name <- nonsetMenu3[[3]]$name
+  items$dish_name[[3]] <- unlist(dish_name)
+}
+```
+
+```{r}
+{
+  dish_name <- nonsetMenu3[[1]]$name # 1st expression
+  items$dish_name[[1]] <- unlist(dish_name)  # 2nd expression
+}
+items$dish_name[[1]]  # 或
+unlist(dish_name)
+```
+
+```{r}
+mingsPrice <- # 找出小明價格
+{
+  sizeChoice <- nonsetMenu3[["豪華雙饗丼"]][["product_variations"]][[2]]
+  pick_size <- sizeChoice$name == '飯大碗'
+  sizeChoice$price[pick_size]
+}
+
+yingsPrice <- # 找出小英價格
+{
+  sizeChoice <- nonsetMenu3[["牛丼類"]][["product_variations"]][[4]]
+  pick_size <- sizeChoice$name == '迷你碗'
+  sizeChoice$price[pick_size]
+}
+
+total= mingsPrice + yingsPrice
+```
+
+```{r}
+library(purrr)
+map(
+  list(2,5,3,7),
+  ~{
+    3^.x
+  }
+)
+map(
+  c(2,5,3,7),
+  ~{
+    3^.x
+  }
+)
+```
+```{r}
+map(
+  list(
+    list("Mary", 5),
+    list("John", 10)
+  ),
+  ~{
+    paste0(.x[[1]], " is ",.x[[2]], " years old")
+  }
+)
+```
+
+```{r}
+myData <- 
+  list(
+    list("Mary", 5),
+    list("John", 10)
+  )
+
+# .x 代表myData的元素
+map(
+  myData,
+  ~{
+    paste0(.x[[1]], " is ",.x[[2]], " years old")
+  }
+)
+
+# .x 代表myData元素值的位置
+map(
+  1:2,
+  ~{
+    paste0(myData[[.x]][[1]], " is ", myData[[.x]][[2]], " years old")
+  }
+)
+```
+
+```{r}
+map(
+  seq_along(myData),
+  ~{
+    paste0(myData[[.x]][[1]], " is ", myData[[.x]][[2]], " years old")
+  }  
+)
+```
+
+```{r}
+{
+  dish_name <- nonsetMenu3[[1]]$name # 1st expression
+  unlist(dish_name)  # 2nd expression
+}
+```
+
+```{r}
+{
+  dish_name <- sukiyaMenu[[.x]]$name # 1st expression
+  unlist(dish_name)  # 2nd expression
+}
+```
+
+```{r}
+map(
+  seq_along(sukiyaMenu),
+  ~ {
+    dish_name <- sukiyaMenu[[.x]]$name # 1st expression
+    unlist(dish_name) # 2nd expression
+  }
+) -> result
+result <- unlist(result[-1])
+result
+```
+
+```{r}
+map(
+  sukiyaMenu,
+  ~ {
+    dish_name <- .x$name # 1st expression
+    unlist(dish_name) # 2nd expression
+  }
+) -> result
+result <- unlist(result[-1])
+result
+```
+
