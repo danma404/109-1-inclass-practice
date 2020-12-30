@@ -1,0 +1,120 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "danma"
+date: "2020-12-30"
+output: output_format
+params:
+  id: "410973013"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+set.seed(10739)
+customers <- data.frame(
+  bills = sample(200:500, 10),
+  vouchers = sample(c(T,F), size=10, replace=T,
+                     prob=c(0.4,0.6)
+                     )
+)
+head(customers)
+```
+```{r}
+bill <- customers$bills[[3]]
+hasVoucher <- customers$vouchers[[3]]
+totalBill <- 
+{
+  startingBill <- bill
+  if(hasVoucher)
+  {
+    bill <- bill - 20
+  }
+  message("You initial bill is ", startingBill,".\n",
+          "You final bill is ", bill)
+  bill
+}
+print(totalBill)
+```
+
+```{r}
+get_totalBill <- function(bill, hasVoucher)
+{
+  startingBill <- bill
+  if(hasVoucher)
+  {
+    bill <- bill - 20
+  }
+  message("You initial bill is ", startingBill,".\n",
+          "You final bill is ", bill, "\n")
+  bill
+}
+```
+```{r}
+purrr::map2(
+  customers$bills, customers$vouchers,
+  ~get_totalBill(.x, .y)
+  )
+
+```
+```{r}
+f <- function(x){
+  if(x<0)
+  {
+    stop("x has to be non-negative.")
+  }
+  sqrt(x)
+}
+```
+
+```{r}
+comment_grade <- function(grade){
+  if(grade < 60) return("Don't give up. There is still hope.")
+  return("Good job. Keep going")
+}
+```
+
+```{r}
+df_grades <- data.frame(
+  grade=sample(50:95, 20, replace = T)
+)
+purrr::map_chr(
+  df_grades$grade,
+  comment_grade
+) -> df_grades$comment
+```
+
+```{r}
+grades <- c(55, 72, 40) # fail in first
+# any one failed? 
+if(grades < 60) message("\nYes, someone failed")
+```
+```{r}
+grades <- c(72, 55, 40) # fail in second
+# any one failed? 
+if(any(grades < 60)) message("\nYes, someone failed")
+```
+```{r}
+Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "true")
+```
+
+```{r}
+grade1 <- list(
+  economics=55,
+  calculus=77
+)
+grade2 <- c(
+  economics=55,
+  calculus=77
+)
+```
+
+```{r}
+(is.list(grade1) &  grade1$economics > 60)
+(is.list(grade2) &  grade2$economics > 60)
+
+```
+
